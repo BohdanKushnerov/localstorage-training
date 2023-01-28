@@ -34,6 +34,10 @@ function onFormSubmit(evt) {
  */
 function onTextareaInput(evt) {
   const message = evt.target.value;
+  // !!!!!!'target', а не 'currentTarget' бо із-за тротла, будуть помилки: 
+  // Uncaught TypeError: Cannot read properties of null (reading 'value')
+  // бо функція визивається через якесь время і собитія вспливають по дереву елементів і в 
+  // 'currentTarget' буде чорті шо, а 'target' він не міняєтся!!!!!!!
 
   localStorage.setItem(STORAGE_KEY, message);
 }
